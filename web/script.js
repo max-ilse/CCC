@@ -5,19 +5,23 @@ function submit() {
 
 	// Activate hour glass and grey out the page
 	$("#overlay").css("cursor", "wait");
-	$("#overlay").fadeIn(250);   
+	$("#overlay").fadeIn(250);
 
-	// Simulate post and get
-	setTimeout(function(){
-		// Update text field
-		$("#textInput").val(text + " DATA FROM SERVER");
+	$.ajax({
+		url: "/getpoem",
+		type:"POST",
+		data: JSON.stringify({'primetext':text}),
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+		success: function(data){
+			// Update text field
+			$("#textInput").val(data.poem);
 
-		// No more waiting
-		$("#overlay").css("cursor", "default");
-		$("#overlay").fadeOut(10);  
-	},
-	3000
-	);	
+			// No more waiting
+			$("#overlay").css("cursor", "default");
+			$("#overlay").fadeOut(10);
+		}
+	})
 }
 
 // Main

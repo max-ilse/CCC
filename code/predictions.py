@@ -19,6 +19,9 @@ from load_text import *
 #-------------------------------------------------------
 
 #def text2unicode(text):
+DICT = './allPoetry_4K'
+vocabulary = Vocab(syllable2index = DICT)
+UNKNOWN_idx = int(vocabulary(u'xxxx'))###EINBINDEN
 
 
 def softmax(x,Temp = 1.):
@@ -37,8 +40,7 @@ def sample_from(probs, Temp = 1):
 
 
 
-def sample(text):
-	print "start sampling..."
+def sample(model, text, TEMP):
 	#primetext = text2unicode(text)
 	for i in xrange(50):
 		prediction = model.pred_fun([vocabulary(text)])[0,-1]
@@ -47,7 +49,7 @@ def sample(text):
 		new_syllable = sample_from(prediction, Temp =TEMP)
 		new_syllable = vocabulary(np.asarray([new_syllable]))
 		text+= new_syllable
-	print text
+	return text
 
 if __name__ == "__main__":
 	DICT = './allPoetry_4K'
