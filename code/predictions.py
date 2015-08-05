@@ -2,69 +2,87 @@
 # -*- coding: utf-8 -*-
 
 """
-NOT DONE YET
+Loading model and predicting text
 
-Karen Ullrich Jun 2015
+Karen, Louis  Aug 2015
 """
+
+#-------------------------------------------------------
+# libs
+#-------------------------------------------------------
 
 import numpy as np
 import random
-
 import theano, theano.tensor as T
 
 from model import *
 from load_text import *
+
+
 #-------------------------------------------------------
 # helpers
 #-------------------------------------------------------
 
-#def text2unicode(text):
-DICT = './allPoetry_4K'
-vocabulary = Vocab(syllable2index = DICT)
-UNKNOWN_idx = int(vocabulary(u'xxxx'))###EINBINDEN
-
-
 def softmax(x,Temp = 1.):
-    e = np.exp(np.array(x) / Temp)
-    dist = e / np.sum(e)
-    return dist
+
+	e = np.exp(np.array(x) / Temp)
+	return e / np.sum(e)
 
 
 def sample_from(probs, Temp = 1):
+
 	probs = softmax(probs, Temp)
 	return np.random.choice(probs.shape[0], 1, p=probs)[0]
 
-#-------------------------------------------------------
-# sampling
-#-------------------------------------------------------
+def predict(primetext, Temp, length = 50):
+	if len(vocabulary(primetext)) == 1: 
+		primetext += u' '
 
-
-
-def sample(model, text, TEMP):
-	#primetext = text2unicode(text)
-	for i in xrange(50):
+	text = primetext
+	for i in xrange(length):
 		prediction = model.pred_fun([vocabulary(text)])[0,-1]
 		prediction[UNKNOWN_idx] = 0
 		prediction = prediction/prediction.sum()
-		new_syllable = sample_from(prediction, Temp =TEMP)
+		new_syllable = sample_from(prediction, Temp =Temp)
 		new_syllable = vocabulary(np.asarray([new_syllable]))
 		text+= new_syllable
+
 	return text
 
-if __name__ == "__main__":
-	DICT = './allPoetry_4K'
-	vocabulary = Vocab(syllable2index = DICT)
+#-------------------------------------------------------
+# load model and dictonary
+#-------------------------------------------------------
 
-	model = Model(
-	        input_size=128,
-	        hidden_size=128,
-	        vocab_size=len(vocabulary),
-	        stack_size=1, # make this bigger, but makes compilation slow
-	        celltype=LSTM, # use RNN or LSTM
-	        load_model = "./model_params_GS2.p",
-	    )
-	# params
-	UNKNOWN_idx = int(vocabulary(u'xxxx'))###EINBINDEN
-	TEMP = 0.005
-	primetext = u'Du kommst des Weges '
-	sample(primetext)
+DICT = "./allPoetry_4K"
+model = "./model_params_GS2.p"
+connections = 128
+
+vocabulary = Vocab(syllable2index = DICT)
+
+model = Model(
+	input_size=connections,
+	hidden_size=connections,
+	vocab_size=len(vocabulary),
+	stack_size=1, 
+	celltype=LSTM,
+	load_model = model,
+)
+
+UNKNOWN_idx = int(vocabulary(u'xxxx'))
+
+#-------------------------------------------------------
+# main loop: generating text
+#-------------------------------------------------------
+
+def main( length = 100 ):
+
+	while True:
+		temp = raw_input('Temperature (range (0,1)): ')
+		temp = float(temp)
+		primetext = raw_input('Start peom with: ')
+		primetext = unicode(primetext, "utf-8")	
+		print predict(primetext, temp, length=length)
+
+
+if __name__ == "__main__":
+	main()   
