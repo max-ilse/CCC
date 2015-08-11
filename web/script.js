@@ -36,11 +36,17 @@ function submit() {
 			$("#overlay").fadeOut(10);
 		},
 		error: function(status){
-			alert("Timeout!");
+			alert("Versuch es bitte noch einmal!");
 		}
 	})
 }
 
 // Main
 $(document).ready(function(){
+	// Get text from textarea for tweet
+	$('a[data-text]').each(function(){
+		var text = $("#textInput").val();
+    	$(this).attr('data-text', text + " #GoetheOnMyMind");
+    });
+	$.getScript('http://platform.twitter.com/widgets.js');
 });

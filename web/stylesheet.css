@@ -1,6 +1,6 @@
 /*Header */
 #header {
-	border-spacing: 3px;
+	margin-bottom: 6px;
 }
 
 #headerText {
@@ -10,7 +10,7 @@
 
 #headline {
 	margin-top: 5px;
-	margin-bottom: 3px;
+	margin-bottom: 0px;
 }
 
 /*Textarea*/
@@ -24,20 +24,33 @@ textarea {
 }
 
 .form-group{
-	margin-bottom: 6px;
+	margin-bottom: 5px;
 }
 
-/*Submit button*/
+/*buttons*/
+#buttons{
+	margin-bottom: 12px;
+}
+
 #submit {
 	color: rgba(117, 97, 93, 1);
-	border: 0;
+	border: 1px solid rgb(190, 190, 190);
 	background-color: white;
 	float: right;
-	font-size: 20px;
+	display: inline-block;
+	font-size: 18.5px;
+	border-radius: 4.5px;
 }
 
 #submit:hover {
-	color: black;
+	color: rgba(97, 77, 73, 1);
+	border: 1px solid rgb(190, 190, 190);
+	background-color: rgb(240, 240, 240);
+}
+
+#tweetButton{
+	float: left;
+	display: inline-block;
 }
 
 /*Overlay*/
