@@ -32,7 +32,7 @@ class Wiki_articles:
     def __init__(self, dir = None, seed =None):
 
         if dir is None: #Hack for my homedir
-            dir = '../../data/text/'
+            dir = '../../../data/text/'
         
         files =[]
         subdirs = [ s for s in listdir(dir)]
@@ -59,7 +59,7 @@ class Poetry:
     def __init__(self, files= None, dir = None, seed =None):
 
         if dir is None: #Hack for my homedir
-            dir = '../../data/poetry/'
+            dir = '../../../data/poetry/'
 
         if files == None : self.files = [join(dir,f) for f in listdir(dir)]
         else: self.files = [join(dir,f) for f in files]
