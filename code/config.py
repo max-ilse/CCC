@@ -25,5 +25,3 @@ decay = 2.0                         # decay factor
 no_decay_epochs = 5                 # run this many epochs before first decay
 max_grad_norm = 10                  # scale steps if norm is above this value
 num_epochs = 1                     # Number of epochs to run
-
-

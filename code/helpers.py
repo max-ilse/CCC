@@ -10,13 +10,13 @@ import lasagne
 from config import *
 
 def save_model(network, save_model):
-    
+
     params = lasagne.layers.get_all_param_values(network)
     pickle.dump(params ,open(save_model, "wb" ))
 
 
 def load_model(save_dir = '.', save_model = sys.argv[0]):
-    
+
     params = pickle.load(open(path.join(save_dir,save_model ), "rb" ))
     return params
 
@@ -42,9 +42,12 @@ def softmax(x,Temp = 1.):
 
 
 def sample_from(probs, Temp = 1):
+    # print(probs.sum())
+    # probs = softmax(probs, Temp).astype('float32')
+    # print(probs.sum())
+    print(probs.dtype)
 
-	probs = softmax(probs, Temp)
-	return np.random.choice(probs.shape[0], 1, p=probs)[0]
+    return np.random.choice(probs.shape[0], 1, p=probs)[0]
 
 def reorder(x_in, batch_size, model_seq_len):
 		"""

@@ -10,13 +10,22 @@
 
 #headline {
 	margin-top: 5px;
-	margin-bottom: 0px;
+	margin-bottom: 20px;
+}
+
+#pic {
+	float: left;
+	margin: 5px 15px 10px 0px;
 }
 
 /*Textarea*/
 textarea {
     resize: none;
     font-size: inherit;
+}
+
+#text-input-container{
+	padding: 30px;
 }
 
 #textInput{
@@ -63,9 +72,4 @@ textarea {
 	width:100%;
 	background-color: rgba(117, 97, 93, 0.5);
 	display: none;
-} 
-
-
-
-
-
+}

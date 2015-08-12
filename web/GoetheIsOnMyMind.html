@@ -22,42 +22,37 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
         <!-- stylesheet -->
-        <link rel="stylesheet" type="text/css" href="stylesheet.css">   
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
     </head>
     <body>
         <!-- header -->
-        <div class="container" id="header">
-            <div class="row">
-                <div class="col-sm-2">
-                    <img src="http://i.imgur.com/wTx2PBb.jpg" title="source: imgur.com" class="img-rounded" width="182" height="182"/>
-                </div>
-                <div class="col-sm-10" id="headerText">
-                    <div id="headline">GOETHE ON MY MIND<br></div>
-                    <div>
-                        Basierend auf einer Technik, die die Funktionsweise des menschlichen Gehirns grundlegend nachahmt,
-                        lehren wir einer Maschine zu reimen wie Goethe und Schiller oder KIZ und Sido.
-                        Die Rede ist vom Deep Learning.
-                        Als Enthusiasten in diesem Bereich möchten wir zeigen, was man mit Deep Learning noch tun kann
-                        außer Gesichter erschreckend gut zu erkennen.
-                        Diese Seite ermöglicht es ausgehend von der eigenen Eingabe Gedichte vom Algorithmus generieren zu lassen.
-                    </div>
-                </div>
+        <div class="container" id="content">
+            <div class="row col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6" id="headerText">
+                  <h2 id="headline">GOETHE ON MY MIND</h2>
+                  <p>
+                      <img id="pic" src="http://i.imgur.com/wTx2PBb.jpg" title="source: imgur.com" class="img-rounded img-responsive" width="182" height="182"/>
+                      Basierend auf einer Technik, die die Funktionsweise des menschlichen Gehirns grundlegend nachahmt,
+                      lehren wir einer Maschine zu reimen wie Goethe und Schiller oder KIZ und Sido.
+                      Die Rede ist vom Deep Learning.
+                      Als Enthusiasten in diesem Bereich möchten wir zeigen, was man mit Deep Learning noch tun kann
+                      außer Gesichter erschreckend gut zu erkennen.
+                      Diese Seite ermöglicht es ausgehend von der eigenen Eingabe Gedichte vom Algorithmus generieren zu lassen.
+                  </p>
             </div>
-        </div>
         <!-- text input -->
-        <div class="container">
-             <div class="form-group">
+        <div class="row col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6" id='text-input-container'>
+             <div class="row form-group">
                 <textarea class="form-control" rows="6" id="textInput">Gib deinen Text hier ein! Am besten beginnst du mit ein paar einfachen Worten. Benutze bitte nur 0-9a-zA-ZäöüßÄÖÜ .,</textarea>
             </div>
-        </div>
         <!-- buttons -->
-        <div class="container" id="buttons">
-            <!-- twitter button -->
-            <a href="http://twitter.com/share" class="twitter-share-button" id="tweetButton" data-text="This is what we want to change dynamically" data-count="none" data-size="large">Tweet</a>
-            <!-- submit button -->
-            <button class="button" id="submit" onclick="submit()">Submit!</button>
-        </div>
+          <div id="buttons">
+              <!-- twitter button -->
+              <a href="http://twitter.com/share" class="twitter-share-button" id="tweetButton" data-text="This is what we want to change dynamically" data-count="none" data-size="large">Tweet</a>
+              <!-- submit button -->
+              <button class="button" id="submit" onclick="submit()">Submit!</button>
+          </div>
+      </div>
         <!-- overlay -->
         <div class="container" id="overlay"><div>
     </body>
