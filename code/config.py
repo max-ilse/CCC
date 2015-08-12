@@ -16,8 +16,8 @@ MODEL_SEQ_LEN = 20                 # how many steps to unroll
 TOL = 1e-6                          # numerial stability
 # model params
 INI = lasagne.init.Uniform(0.1)     # initial parameter values
-REC_NUM_UNITS = 200                 # number of LSTM units
-embedding_size = 200                # Embedding size
+REC_NUM_UNITS = 100                 # number of LSTM units
+embedding_size = 10                # Embedding size
 dropout_frac = 0.5                    # optional recurrent dropout
 #learning params
 lr = 0.1                            # learning rate

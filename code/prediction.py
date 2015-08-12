@@ -32,7 +32,7 @@ from model import *
 
 UNKNOWN_idx = int(vocabulary(u'xxxx'))
 
-def predict(primetext, Temp, length = 50):
+def predict(primetext, Temp, length = 30):
 	print(BATCH_SIZE)
 	hid1, hid2 = [np.zeros((BATCH_SIZE, REC_NUM_UNITS), dtype='float32') for _ in range(2)]
 	batch_requ_length = (BATCH_SIZE*MODEL_SEQ_LEN)+1

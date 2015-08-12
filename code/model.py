@@ -20,7 +20,7 @@ import theano.tensor as T
 import lasagne
 theano.config.mode = "FAST_RUN"
 # theano.config.floatX = 'float32'
-theano.config.profile = True
+# theano.config.profile = True
 floatX = theano.config.floatX
 print(floatX)
 

@@ -21,7 +21,7 @@ function submit() {
 	$("#overlay").fadeIn(250);
 
 	$.ajax({
-		url: "/getpoem",
+		url: "/rnnpoetry/getpoem",
 		type:"POST",
 		data: JSON.stringify({'primetext':text}),
 		contentType:"application/json; charset=utf-8",
