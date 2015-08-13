@@ -31,6 +31,11 @@ function submit() {
 			// Update text field
 			$("#textInput").val(data.poem);
 
+			$('a[data-text]').each(function(){
+      			$(this).attr('data-text', data.poem + "#vbbzb #ccc2015");
+    		});
+    		$.getScript('http://platform.twitter.com/widgets.js');
+
 			// No more waiting
 			$("#overlay").css("cursor", "default");
 			$("#overlay").fadeOut(10);
@@ -39,14 +44,13 @@ function submit() {
 			alert("Versuch es bitte noch einmal!");
 		}
 	})
+};
+
+// Clear default text in textarea
+function clearContents(element) {
+  element.value = '';
 }
 
 // Main
 $(document).ready(function(){
-	// Get text from textarea for tweet
-	$('a[data-text]').each(function(){
-		var text = $("#textInput").val();
-    	$(this).attr('data-text', text + " #GoetheOnMyMind");
-    });
-	$.getScript('http://platform.twitter.com/widgets.js');
 });

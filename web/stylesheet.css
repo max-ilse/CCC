@@ -1,21 +1,24 @@
 /*Header */
-#header {
-	margin-bottom: 6px;
-}
-
 #headerText {
 	color: rgba(117, 97, 93, 1);
-	font-size: 20px;
+	font-size: 16px;
+	text-align: left;
+}
+
+p {
+	margin-bottom: 5px;
 }
 
 #headline {
 	margin-top: 5px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+	font-size: 35.5px;
+	text-align: left;
 }
 
 #pic {
 	float: left;
-	margin: 5px 15px 10px 0px;
+	margin: 3px 5px 0px 0px;
 }
 
 /*Textarea*/
@@ -26,10 +29,11 @@ textarea {
 
 #text-input-container{
 	padding: 30px;
+	padding-top: 0px;
 }
 
 #textInput{
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .form-group{
@@ -47,8 +51,10 @@ textarea {
 	background-color: white;
 	float: right;
 	display: inline-block;
-	font-size: 18.5px;
+	font-size: 16px;
 	border-radius: 4.5px;
+	padding-bottom: 1.5px;
+	padding-top: 1.5px;
 }
 
 #submit:hover {
@@ -60,6 +66,7 @@ textarea {
 #tweetButton{
 	float: left;
 	display: inline-block;
+	visibility:hidden
 }
 
 /*Overlay*/
