@@ -3,15 +3,12 @@
   color: rgba(117, 97, 93, 1);
   font-size: 16px;
   text-align: left;
-}
-
-p {
   margin-bottom: 10px;
 }
 
 #headline {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 7%;
+  margin-bottom: 15px;
   font-size: 35.5px;
   text-align: left;
 }
