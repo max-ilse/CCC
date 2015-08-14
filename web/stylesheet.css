@@ -1,16 +1,21 @@
 /*Header */
-#header {
-	margin-bottom: 6px;
-}
-
 #headerText {
-	color: rgba(117, 97, 93, 1);
-	font-size: 20px;
+  color: rgba(117, 97, 93, 1);
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 #headline {
-	margin-top: 5px;
-	margin-bottom: 0px;
+  margin-top: 7%;
+  margin-bottom: 15px;
+  font-size: 35.5px;
+  text-align: left;
+}
+
+#pic {
+  float: left;
+  margin: 3px 10px 0px 0px;
 }
 
 /*Textarea*/
@@ -19,53 +24,58 @@ textarea {
     font-size: inherit;
 }
 
+#text-input-container{
+  padding: 30px;
+  padding-top: 0px;
+}
+
 #textInput{
-	font-size: 20px;
+  font-size: 16px;
 }
 
 .form-group{
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 /*buttons*/
 #buttons{
-	margin-bottom: 12px;
+  margin-top: 10px;
+  margin-bottom: 12px;
 }
 
 #submit {
-	color: rgba(117, 97, 93, 1);
-	border: 1px solid rgb(190, 190, 190);
-	background-color: white;
-	float: right;
-	display: inline-block;
-	font-size: 18.5px;
-	border-radius: 4.5px;
+  color: rgba(117, 97, 93, 1);
+  border: 1px solid rgb(190, 190, 190);
+  background-color: white;
+  float: right;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4.5px;
+  padding-bottom: 1.5px;
+  padding-top: 1.5px;
+  padding-left: 8x;
+  padding-right: 8px;
 }
 
 #submit:hover {
-	color: rgba(97, 77, 73, 1);
-	border: 1px solid rgb(190, 190, 190);
-	background-color: rgb(240, 240, 240);
+  color: rgba(97, 77, 73, 1);
+  border: 1px solid rgb(190, 190, 190);
+  background-color: rgb(240, 240, 240);
 }
 
 #tweetButton{
-	float: left;
-	display: inline-block;
+  float: left;
+  display: inline-block;
 }
 
 /*Overlay*/
 #overlay {
-	position: fixed;
-	z-index:199;
-	top: 0px;
-	left: 0px;
-	height:100%;
-	width:100%;
-	background-color: rgba(117, 97, 93, 0.5);
-	display: none;
-} 
-
-
-
-
-
+  position: fixed;
+  z-index:199;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background-color: rgba(117, 97, 93, 0.5);
+  display: none;
+}

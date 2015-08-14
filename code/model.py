@@ -12,13 +12,17 @@ from __future__ import print_function, division
 import numpy as np
 import os
 import time
-import gzip
+# import gzip
 import cPickle as pickle
 
 import theano
 import theano.tensor as T
 import lasagne
+theano.config.mode = "FAST_RUN"
+# theano.config.floatX = 'float32'
+# theano.config.profile = True
 floatX = theano.config.floatX
+print(floatX)
 
 from config import *
 
@@ -36,6 +40,7 @@ def calc_cross_ent(net_output, targets):
 #-------------------------------------------------------
 
 print('Build model ...')
+print('vocab_size', vocab_size)
 
 # Theano symbolic vars
 sym_x = T.imatrix()
@@ -103,6 +108,7 @@ cost_eval = T.mean(calc_cross_ent(eval_out, sym_y))
 
 # Get list of all trainable parameters in the network.
 all_params = lasagne.layers.get_all_params(l_out, trainable=True)
+print(lasagne.layers.count_params(l_out))
 
 # Calculate gradients w.r.t cost function. Note that we scale the cost with
 # MODEL_SEQ_LEN. This is to be consistent with
@@ -129,27 +135,26 @@ updates = lasagne.updates.rmsprop(all_grads, all_params, learning_rate=sh_lr)
 
 # Define evaluation function. This graph disables dropout.
 print("compiling f_eval...")
-fun_inp = [sym_x, sym_y, hid1_init_sym, hid2_init_sym]
-f_eval = theano.function(fun_inp,
-												 [cost_eval,
-													hidden_states_eval[0][:, -1],
-													hidden_states_eval[1][:, -1]])
+# fun_inp = [sym_x, sym_y, hid1_init_sym, hid2_init_sym]
+# f_eval = theano.function(fun_inp,
+# 												 [cost_eval,
+# 													hidden_states_eval[0][:, -1],
+# 													hidden_states_eval[1][:, -1]])
 
 # define training function. This graph has dropout enabled.
 # The update arg specifies that the parameters should be updated using the
 # update rules.
 print("compiling f_train...")
-f_train = theano.function(fun_inp,
-													[cost_train,
-													 norm,
-													 hidden_states_train[0][:, -1],
-													 hidden_states_train[1][:, -1]],
-													updates=updates)
+# f_train = theano.function(fun_inp,
+# 													[cost_train,
+# 													 norm,
+# 													 hidden_states_train[0][:, -1],
+# 													 hidden_states_train[1][:, -1]],
+# 													updates=updates)
 
 print("compiling f_pred...")
-f_pred = theano.function([sym_x, hid1_init_sym, hid2_init_sym],	
+f_pred = theano.function([sym_x, hid1_init_sym, hid2_init_sym],
 									[eval_out,
 									hidden_states_eval[0][:, -1],
-									hidden_states_eval[1][:, -1]])
-
-
+									hidden_states_eval[1][:, -1]],
+									mode='FAST_RUN')
