@@ -26,9 +26,9 @@ from helpers import *
 
 from model import *
 
-# params = pickle.load(open(MODEL, "rb" ))
+params = pickle.load(open(MODEL, "rb" ))
 
-# lasagne.layers.set_all_param_values(l_out, params)
+lasagne.layers.set_all_param_values(l_out, params)
 
 
 
