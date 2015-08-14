@@ -32,7 +32,7 @@ class Wiki_articles:
     def __init__(self, dir = None, seed =None):
 
         if dir is None: #Hack for my homedir
-            dir = '../../../data/text/'
+            dir = '../data/text/'
         
         files =[]
         subdirs = [ s for s in listdir(dir)]
@@ -59,7 +59,7 @@ class Poetry:
     def __init__(self, files= None, dir = None, seed =None):
 
         if dir is None: #Hack for my homedir
-            dir = '../../../data/poetry/'
+            dir = '../data/poetry/'
 
         if files == None : self.files = [join(dir,f) for f in listdir(dir)]
         else: self.files = [join(dir,f) for f in files]
@@ -212,6 +212,70 @@ class Vocab:
             open( join(outdir,'vocabulary'), "wb" ))
 
 
+class CharMap:
+    __slots__ = ["char2index", "index2char", "unknown"]
+    
+    def __init__(self, char2index = None):
+
+        self.char2index = {}
+        self.index2char = []
+        
+        # load old dictionary if path given
+        if char2index is not None:
+            self.char2index = pickle.load( open(char2index, "rb"))
+            self.index2char = ["" for x in range(len(self.char2index))]
+            for char in self.char2index.keys():
+                self.index2char[self.char2index[char][0]] = char
+
+            
+    def add_char(self, text):
+        for char in list(unicode(text)):
+            if char not in self.char2index:
+                self.char2index[char] = [len(self.char2index),1] # [idx ,count]
+                self.index2char.append(char)
+            else: 
+                self.char2index[char][1] += 1
+
+
+    def __call__(self, line):
+        """
+        Convert from numerical representation to words
+        and vice-versa.
+        """
+        #  ints to text
+        if type(line) is np.ndarray: 
+            return "".join([self.index2char[char] for char in line])
+        if type(line) is list:
+            if len(line) > 0: # got 
+                if line[0] is int:
+                    return "".join([self.index2char[char] for char in line])
+            indices = np.zeros(len(line), dtype=np.int32)
+        # text 2 chars
+        else:
+            text2chars = list(line)
+            indices = np.zeros(len(text2chars), dtype=np.int32)
+
+            for i, char in enumerate(text2chars):
+                indices[i] = self.char2index[char][0]
+            
+            return indices
+    
+    @property
+    def size(self):
+        return len(self.index2char)
+
+    def __len__(self):
+        return len(self.index2char)
+
+
+    def save(self, outdir=None):
+        '''Saves vocabulary dictionary to file
+
+        '''
+        pickle.dump(self.char2index, 
+            open( join(outdir,'charmap'), "wb" ))
+
+
 def main():
     '''
     Go through the wiki corpus and create (and save) a 
@@ -222,10 +286,9 @@ def main():
     vocabulary = Vocab()
     for article in articles():
         counter +=1
-        print '\rprogress ', counter/17936.42
-        vocabulary.add_syllables(article)
-    #vocabulary.show_occurence()
-    vocabulary.restrict_vocabs(5000)
+        print '\rprogress ', counter
+        vocabulary.add_char(article)
+
     vocabulary.save(outdir='../data/')    
 
 if __name__=="__main__":

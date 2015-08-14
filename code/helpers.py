@@ -42,12 +42,8 @@ def softmax(x,Temp = 1.):
 
 
 def sample_from(probs, Temp = 1):
-    # print(probs.sum())
-    # probs = softmax(probs, Temp).astype('float32')
-    # print(probs.sum())
-    print(probs.dtype)
-
-    return np.random.choice(probs.shape[0], 1, p=probs)[0]
+	probs = probs/np.sum(probs) #numerical stability
+	return np.random.choice(probs.shape[0], 1, p=probs)[0]
 
 def reorder(x_in, batch_size, model_seq_len):
 		"""

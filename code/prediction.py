@@ -30,13 +30,13 @@ from model import *
 
 # lasagne.layers.set_all_param_values(l_out, params)
 
-UNKNOWN_idx = int(vocabulary(u'xxxx'))
+
 
 def predict(primetext, Temp, length = 30):
 	print(BATCH_SIZE)
 	hid1, hid2 = [np.zeros((BATCH_SIZE, REC_NUM_UNITS), dtype='float32') for _ in range(2)]
 	batch_requ_length = (BATCH_SIZE*MODEL_SEQ_LEN)+1
-	text = primetext
+	text = unicode(primetext)
 	for i in xrange(length):
 		start = time.time()
 		numerical_text  = vocabulary(unicode(text))
@@ -52,11 +52,6 @@ def predict(primetext, Temp, length = 30):
 		print "f_pred", end - start
 		start = time.time()
 		prediction = prediction.reshape(BATCH_SIZE*MODEL_SEQ_LEN,vocab_size)[pos]
-		prediction[UNKNOWN_idx] = 0
-		print(prediction.sum())
-		prediction = prediction.astype(np.float64)
-		prediction /= prediction.sum()
-		print(prediction.sum())
 		new_syllable = sample_from(prediction, Temp =Temp)
 		end = time.time()
 		print "sample", end - start
