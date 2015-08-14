@@ -35,9 +35,8 @@ function submit() {
       $("#textInput").val(data.poem);
 
       // Update Twitter
-      $('a[data-text]').each(function(){
-          $(this).attr('data-text', data.poem + " #vbbzb #ccc2015");
-      });
+      $('a').attr('data-text', data.poem + " #vbbzb #ccc2015");
+      $.getScript('http://platform.twitter.com/widgets.js');
 
       // No more waiting
       $("#overlay").css("cursor", "default");
