@@ -64,9 +64,8 @@ textarea {
 }
 
 #tweetButton{
-  float: left
-  display: inline-block;
-  margin-top: 0px;
+  float: left;
+  display: none;
 }
 
 /*Overlay*/

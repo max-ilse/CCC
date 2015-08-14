@@ -3,14 +3,6 @@ function submit() {
   // Get data from text field
   var text = $("#textInput").val();
 
-  // Destroy tweet button always
-  $("#tweetButton").remove();
-  $("#buttons").append('<a href="http://twitter.com/share" class="twitter-share-button" id="tweetButton" data-text="" data-count="none" data-size="large">Tweet</a>');
-  $('a[data-text]').each(function(){
-      $(this).attr('data-text', text + " #vbbzb #ccc2015");
-  });
-  $.getScript('http://platform.twitter.com/widgets.js');
-
   // Remove info text after first submit
   $("textarea").removeAttr('placeholder');
 
@@ -25,7 +17,7 @@ function submit() {
       alert("Fasse dich bitte etwas kürzer!");
       return false;
   }
-  
+
   // Activate hour glass and grey out the page
   $("#overlay").css("cursor", "wait");
   $("#overlay").fadeIn(250);
@@ -38,14 +30,14 @@ function submit() {
     dataType:"json",
     timeout: 10000,
     success: function(data){
+      $("#tweetButton").fadeIn(1000);
       // Update text field
       $("#textInput").val(data.poem);
 
       // Update Twitter
       $('a[data-text]').each(function(){
-          $(this).attr('data-text', data.poem + "#vbbzb #ccc2015");
+          $(this).attr('data-text', data.poem + " #vbbzb #ccc2015");
       });
-      $.getScript('http://platform.twitter.com/widgets.js');
 
       // No more waiting
       $("#overlay").css("cursor", "default");
