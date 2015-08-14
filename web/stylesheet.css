@@ -1,32 +1,71 @@
-#overlay {
-	position : absolute;
-	top      : 0;
-	left     : 0;
-	width    : 100%;
-	height   : 100%;
-	z-index  : 995;
-	background-color: rgba(147, 127, 123, 0.7);
-	display: none;
-} 
-
+/*Header */
 #header {
-	color: rgba(147, 127, 123, 1);
-	font-family: Helvetica;
+	margin-bottom: 6px;
 }
 
-#textarea {
-	color: rgba(147, 127, 123, 1);
-	font-family: Helvetica;
+#headerText {
+	color: rgba(117, 97, 93, 1);
+	font-size: 20px;
+}
+
+#headline {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+/*Textarea*/
+textarea {
+    resize: none;
+    font-size: inherit;
+}
+
+#textInput{
+	font-size: 20px;
+}
+
+.form-group{
+	margin-bottom: 5px;
+}
+
+/*buttons*/
+#buttons{
+	margin-bottom: 12px;
 }
 
 #submit {
-	color: rgba(147, 127, 123, 1);
-	font-family: Helvetica;
-	border: 0;
+	color: rgba(117, 97, 93, 1);
+	border: 1px solid rgb(190, 190, 190);
 	background-color: white;
-	display: block;
+	float: right;
+	display: inline-block;
+	font-size: 18.5px;
+	border-radius: 4.5px;
 }
 
 #submit:hover {
-	color: black;
+	color: rgba(97, 77, 73, 1);
+	border: 1px solid rgb(190, 190, 190);
+	background-color: rgb(240, 240, 240);
 }
+
+#tweetButton{
+	float: left;
+	display: inline-block;
+}
+
+/*Overlay*/
+#overlay {
+	position: fixed;
+	z-index:199;
+	top: 0px;
+	left: 0px;
+	height:100%;
+	width:100%;
+	background-color: rgba(117, 97, 93, 0.5);
+	display: none;
+} 
+
+
+
+
+
