@@ -30,7 +30,6 @@ function submit() {
     dataType:"json",
     timeout: 10000,
     success: function(data){
-      $("#tweetButton").fadeIn(1000);
       // Update text field
       $("#textInput").val(data.poem);
 
