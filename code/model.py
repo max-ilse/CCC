@@ -61,7 +61,7 @@ l_emb = lasagne.layers.EmbeddingLayer(
 l_drp0 = lasagne.layers.DropoutLayer(l_emb, p=dropout_frac)
 
 # first GRU layer
-l_rec1 = lasagne.layers.GRULayer(
+l_rec1 = lasagne.layers.LSTMLayer(
 		l_drp0,
 		num_units=REC_NUM_UNITS,
 		learn_init=False,
@@ -70,7 +70,7 @@ l_rec1 = lasagne.layers.GRULayer(
 l_drp1 = lasagne.layers.DropoutLayer(l_rec1, p=dropout_frac)
 
 # Second GRU layer
-l_rec2 = lasagne.layers.GRULayer(
+l_rec2 = lasagne.layers.LSTMLayer(
 		l_drp1,
 		num_units=REC_NUM_UNITS,
 		learn_init=False,
@@ -125,7 +125,7 @@ sh_lr = theano.shared(lasagne.utils.floatX(lr))
 # define learning
 #-------------------------------------------------------
 
-updates = lasagne.updates.sgd(all_grads, all_params, learning_rate=sh_lr)
+updates = lasagne.updates.rmsprop(all_grads, all_params, learning_rate=sh_lr)
 
 # Define evaluation function. This graph disables dropout.
 print("compiling f_eval...")

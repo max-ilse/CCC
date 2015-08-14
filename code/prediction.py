@@ -30,12 +30,12 @@ params = pickle.load(open(MODEL, "rb" ))
 
 lasagne.layers.set_all_param_values(l_out, params)
 
-UNKNOWN_idx = int(vocabulary(u'xxxx'))
+
 
 def predict(primetext, Temp, length = 50):
 	hid1, hid2 = [np.zeros((BATCH_SIZE, REC_NUM_UNITS), dtype='float32') for _ in range(2)]
 	batch_requ_length = (BATCH_SIZE*MODEL_SEQ_LEN)+1
-	text = primetext
+	text = unicode(primetext)
 	for i in xrange(length):
 		numerical_text  = vocabulary(unicode(text))	
 		pos = len(numerical_text)
@@ -44,7 +44,6 @@ def predict(primetext, Temp, length = 50):
 		x_pred,_ = reorder(tokend_seq,BATCH_SIZE,MODEL_SEQ_LEN)
 		prediction, hid1, hid2 = f_pred(x_pred,hid1,hid2)
 		prediction = prediction.reshape(BATCH_SIZE*MODEL_SEQ_LEN,vocab_size)[pos]
-		prediction[UNKNOWN_idx] = 0
 		new_syllable = sample_from(prediction, Temp =Temp)
 		new_syllable = vocabulary(np.asarray([new_syllable]))
 		text += new_syllable
