@@ -3,14 +3,6 @@ function submit() {
   // Get data from text field
   var text = $("#textInput").val();
 
-  // Destroy tweet button always
-  $("#tweetButton").remove();
-  $("#buttons").append('<a href="http://twitter.com/share" class="twitter-share-button" id="tweetButton" data-text="" data-count="none" data-size="large">Tweet</a>');
-  $('a[data-text]').each(function(){
-      $(this).attr('data-text', text + " #vbbzb #ccc2015");
-  });
-  $.getScript('http://platform.twitter.com/widgets.js');
-
   // Remove info text after first submit
   $("textarea").removeAttr('placeholder');
 
@@ -41,9 +33,11 @@ function submit() {
       // Update text field
       $("#textInput").val(data.poem);
 
-      // Update Twitter
+      // Destroy tweet button always
+      $("#tweetButton").remove();
+      $("#buttons").append('<a href="http://twitter.com/share" class="twitter-share-button" id="tweetButton" data-text="" data-count="none" data-size="large">Tweet</a>');
       $('a[data-text]').each(function(){
-          $(this).attr('data-text', data.poem + "#vbbzb #ccc2015");
+          $(this).attr('data-text', data.poem + " #vbbzb #ccc2015");
       });
       $.getScript('http://platform.twitter.com/widgets.js');
 
@@ -62,4 +56,5 @@ function submit() {
 
 // Main
 $(document).ready(function(){
+  $.getScript('http://platform.twitter.com/widgets.js');
 });
